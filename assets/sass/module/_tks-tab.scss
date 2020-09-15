@@ -1,0 +1,17 @@
+.tks-tab {
+	display: block;
+	width: 100%;
+	.tks-tab-content {
+		display: none;
+	}
+	.tks-tab-link {
+		&.tks-tab-status-closed {
+			.tks-tab-icon {
+				content: '+';
+			}
+		}
+		&.tks-tab-status-opened {
+			content: '-';
+		}
+	}
+}
