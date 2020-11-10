@@ -107,8 +107,8 @@ function tks_change_products_per_page( $query ) {
     endif;
 
 
-       $query->set( 'orderby', 'menu_order' );
-       $query->set( 'order', 'ASC' );
+    //    $query->set( 'orderby', 'menu_order' );
+    //    $query->set( 'order', 'ASC' );
 }
 
 add_action( 'admin_menu', 'tks_remove_menus_editor' );
@@ -118,7 +118,7 @@ function tks_remove_menus_editor(){
     remove_menu_page( 'edit-comments.php' );
 }
 
-add_action( 'admin_init', 'tks_post_menu_order' );
+// add_action( 'admin_init', 'tks_post_menu_order' );
 
 function tks_post_menu_order() {
     add_post_type_support( 'post', 'page-attributes' );
@@ -147,7 +147,7 @@ function tks_pre_insert_post( $post, \WP_REST_Request $request )
 
     return $post;
 }
-add_filter( 'rest_pre_insert_post', 'tks_pre_insert_post', 12, 2 );
+// add_filter( 'rest_pre_insert_post', 'tks_pre_insert_post', 12, 2 );
 
 
 /**
@@ -165,4 +165,4 @@ function tks_prepare_post( \WP_REST_Response $response, $post, $request )
 
     return $response;
 }
-add_filter( 'rest_prepare_post', 'tks_prepare_post', 12, 3 );
+// add_filter( 'rest_prepare_post', 'tks_prepare_post', 12, 3 );
