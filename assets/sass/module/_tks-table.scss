@@ -1,0 +1,33 @@
+.tks-table {
+    background-color: transparent;
+    width: 100%;
+    margin-block-end: 15px;
+    font-size: 0.9em;
+    border-spacing: 0;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    tbody {
+        tr {
+            padding: 15px;
+            line-height: 1.5;
+            vertical-align: top;
+            border: 1px solid #80808080;
+            transition: background-color 0.25s;
+            td,
+            th {
+                text-transform: uppercase;
+                padding: 15px;
+                line-height: 1.5;
+                vertical-align: top;
+                border: 1px solid #bfbfbf;
+                color: $preto;
+            }
+            &:nth-child(odd) {
+                background-color: #f6f6f6;
+            }
+            &:hover {
+                background-color: #eaeaea;
+            }
+        }
+    }
+}

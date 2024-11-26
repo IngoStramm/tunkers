@@ -1,0 +1,20 @@
+.tks-tab {
+	display: block;
+	width: 100%;
+    padding-bottom: 20px;
+    border-bottom: solid 1px $preto;
+    margin-bottom: 40px;
+	.tks-tab-content {
+		display: none;
+	}
+	.tks-tab-link {
+		&.tks-tab-status-closed {
+			.tks-tab-icon {
+				content: '+';
+			}
+		}
+		&.tks-tab-status-opened {
+			content: '-';
+		}
+	}
+}

@@ -1,0 +1,28 @@
+.tks-download-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0;
+    background-color: $amarelo;
+    padding: 0;
+    border: 1px solid $preto;
+    margin-bottom: 40px;
+    .tks-tab {
+        padding-bottom: 0;
+        margin-bottom: 0;
+        border-bottom: none;
+        h3 {
+            margin: 0;
+            padding: 15px 20px;
+            .tks-tab-icon {
+                margin-right: 10px;
+            }
+        }
+        .tks-tab-content {
+            border-top: 1px solid $preto;
+            background-color: #ead300;
+            padding: 15px 20px;
+        }
+    }
+}

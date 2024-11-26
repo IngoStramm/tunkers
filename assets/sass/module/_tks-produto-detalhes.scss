@@ -1,0 +1,46 @@
+.tks-produto-detalhes {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 40px;
+    font-family: 'Oswald', Sans-serif;
+    font-weight: 400;
+    margin: 0;
+    padding: 80px 30px;
+    width: 100%;
+    h2 {
+        color: $preto;
+        font-size: 25px;
+        font-weight: 400;
+        letter-spacing: 2.2px;
+        line-height: 1em;
+        text-transform: uppercase;
+        a {
+            display: block;
+            font: inherit;
+            color: inherit;
+        }
+    }
+    h3 {
+        color: $preto;
+        font-size: 16px;
+        font-weight: 300;
+        text-transform: uppercase;
+        a {
+            display: block;
+            font: inherit;
+            color: inherit;
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .tks-produto-detalhes {
+        flex-direction: row;
+        gap: 100px;
+        .tks-produto-detalhes-col {
+            width: 50%;
+        }
+    }
+}

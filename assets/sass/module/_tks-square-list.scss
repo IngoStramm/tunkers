@@ -1,0 +1,36 @@
+.tks-square-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+    font-family: "Helvetica", Sans-serif;
+    font-size: 15px;
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+    li {
+        position: relative;
+        padding-left: 18px;
+        font: inherit;
+        a {
+            font: inherit;
+        }
+        &::before {
+            display: block;
+            position: absolute;
+            top: 6px;
+            left: 0;
+            content: '';
+            width: 8px;
+            height: 8px;
+            background-color: $amarelo;
+            transition: all .25s;
+        }
+        &:hover {
+            &::before {
+                background-color: $preto;
+            }
+        }
+    }
+}
