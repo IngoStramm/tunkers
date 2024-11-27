@@ -1,0 +1,24 @@
+{
+    "name": "Template Plugin",
+    "version": "2.2.2",
+    "download_url": "https://raw.githubusercontent.com/IngoStramm/tunkers/refs/heads/main/dist/tunkers.zip",
+    "homepage": "https://agencialaf.com",
+    "requires": "4.7",
+    "tested": "5.5",
+    "last_updated": "2020-09-01 15:30:00",
+    "upgrade_notice": "Atualização do Template Plugin disponível",
+    "author": "Ingo Stramm",
+    "author_homepage": "https://agencialaf.com",
+    "sections": {
+        "description": "Descrição do Template Plugin.",
+        "installation": "A instalação deste plugin deve ser feita pelo Converte Fácil."
+    },
+    "icons": {
+        "1x": "https://raw.githubusercontent.com/IngoStramm/tunkers/refs/heads/main/assets/images/plugin-banner-128x128.jpg",
+        "2x": "https://raw.githubusercontent.com/IngoStramm/tunkers/refs/heads/main/assets/images/plugin-banner-256x256.jpg"
+    },
+    "banners": {
+        "low": "https://raw.githubusercontent.com/IngoStramm/tunkers/refs/heads/main/assets/images/plugin-banner-772x250.jpg",
+        "high": "https://raw.githubusercontent.com/IngoStramm/tunkers/refs/heads/main/assets/images/plugin-banner-1544x500.jpg"
+    }
+}

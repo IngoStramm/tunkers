@@ -1,7 +1,7 @@
 {
   "name": "tunkers",
   "description": "Plugin do site Tunkers",
-  "version": "1.0.1",
+  "version": "2.2.2",
   "title": "Tunkers",
   "homepage": "https://agencialaf.com",
   "main": "Gruntfile.js",
