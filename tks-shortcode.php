@@ -262,7 +262,7 @@ add_shortcode('tks-catalogo', 'tks_catalogo');
 
 function tks_catalogo()
 {
-
+    $output = '';
     $cats = get_terms(
         'categoria_de_catalogo_virtual',
         array(
@@ -273,8 +273,9 @@ function tks_catalogo()
     // tks_debug( $cats );
     // term_id, name, count
 
-    if (!$cats || empty($cats))
+    if (!$cats || empty($cats)) {
         return;
+    }
 
     $upload_dir = wp_upload_dir();
     // tks_debug( $upload_dir );
@@ -292,11 +293,12 @@ function tks_catalogo()
     $catalogos = array();
     $total_posts = 0;
 
-    if ($query->have_posts()) :
+    if ($query->have_posts()) {
 
         $total_posts = $query->post_count;
 
-        while ($query->have_posts()) : $query->the_post();
+        while ($query->have_posts()) {
+            $query->the_post();
 
             $catalogos[] = array(
                 'post_ID'            => get_the_ID(),
@@ -304,168 +306,61 @@ function tks_catalogo()
                 'terms'                => get_the_terms(get_the_ID(), 'categoria_de_catalogo_virtual'),
                 'download'            => get_field('field_5968fde1d368a', get_the_ID())
             );
-
-        endwhile;
-
-    endif;
+        }
+    }
 
     wp_reset_postdata();
 
     // tks_debug( $total_posts );
 
-    echo '<div class="tks-catalogos elementor elementor-7226">';
+    $output .= '
+    <div class="tks-catalogos">';
 
-    foreach ($cats as $cat) :
+    foreach ($cats as $cat) {
 
         $total_cat = $cat->count;
 
-        // tks_debug( $total_cat );
-
-        echo '
-
+        $output .= '
 			<h2 class="tks-catalogos-cat-title">' . $cat->name . '</h2>';
 
+        $output .= '
+			<ul class="tks-catalogos-lista">';
         $count_catalogo = 0;
 
-        foreach ($catalogos as $catalogo) :
+        foreach ($catalogos as $catalogo) {
 
-            // tks_debug( $catalogo[ 'terms' ] );
+            if ($catalogo['terms']) {
+                foreach ($catalogo['terms'] as $term) {
 
-            foreach ($catalogo['terms'] as $term) :
+                    if ($cat->term_id == $term->term_id) {
+                        $icon_url = TKS_URL . '/images/icon-pdf-1.png';
+                        $titulo = $catalogo['post_title'];
+                        $output .= '
+                        <li class="tks-catalogos-lista-item">';
+                        $output .= '
+                            <div class="tks-catalogos-lista-item-overlay"></div>';
+                        $download_url = isset($catalogo['download']['url']) && $catalogo['download']['url'] ? $catalogo['download']['url'] : null;
 
-                if ($cat->term_id == $term->term_id) :
+                        $output .= sprintf('<img src="%s" class="tks-catalogos-lista-item-icon" />', $icon_url);
+                        $output .= sprintf('<h4 class="tks-catalogos-lista-item-title">%s</h4>', $titulo);
 
+                        if ($download_url) {
+                            $output .= sprintf('<a href="%s" target="_blank" class="tks-catalogos-lista-item-link"><i class="fas fa-angle-right"></i> %s</a>', $download_url, __('Download', 'tks'));
+                        }
 
-                    // tks_debug( $catalogo[ 'download' ] );
+                        $output .= '</li>';
+                        $count_catalogo++;
+                    }
+                }
+            }
+        }
+        $output .= '
+			</ul>';
+    }
 
-                    if ($count_catalogo % 4 == 0) :
-
-                        echo '<section class="elementor-element elementor-element-55454ad5 elementor-section-full_width elementor-section-height-default elementor-section-height-default elementor-section elementor-inner-section" data-id="55454ad5" data-element_type="section">
-
-								<div class="elementor-container elementor-column-gap-default">';
-
-                        echo         '<div class="elementor-row">';
-
-                    endif;
-
-                    // tks_debug( $catalogo[ 'post_title' ] );
-
-                    echo '
-					<div class="elementor-element elementor-element-28a524f8 elementor-column elementor-col-25 elementor-inner-column" data-id="28a524f8" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-								
-						<div class="elementor-column-wrap  elementor-element-populated">
-
-							<div class="elementor-background-overlay"></div>
-
-							<div class="elementor-widget-wrap">
-
-								<div class="elementor-element elementor-element-4de68018 elementor-hidden-phone elementor-widget elementor-widget-image" data-id="4de68018" data-element_type="widget" data-widget_type="image.default">
-
-									<div class="elementor-widget-container">
-
-										<div class="elementor-image">
-
-											<img width="44" height="57" alt="" data-src="' . TKS_URL . '/images/icon-pdf-1.png" class="attachment-large size-large ls-is-cached lazyloaded" src="' . TKS_URL . '/images/icon-pdf-1.png"><noscript><img width="44" height="57"   alt="" data-src="' . TKS_URL . '/images/icon-pdf-1.png" class="attachment-large size-large lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
-
-											<noscript>
-
-												<img width="44" height="57"   alt="" data-src="' . TKS_URL . '/images/icon-pdf-1.png" class="attachment-large size-large lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /><noscript><img width="44" height="57"   alt="" data-src="' . TKS_URL . '/images/icon-pdf-1.png" class="attachment-large size-large lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /><noscript><img width="44" height="57" src="' . TKS_URL . '/images/icon-pdf-1.png" class="attachment-large size-large" alt="" />
-
-											</noscript>
-
-										</div>
-										<!-- /.elementor-image -->
-
-									</div>
-									<!-- ./elementor-widget-container -->
-
-								</div>
-								<!-- ./elementor-widget-container -->
-
-								<div class="elementor-element elementor-element-4f7e080f elementor-widget elementor-widget-heading" data-id="4f7e080f" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;none&quot;}" data-widget_type="heading.default">
-
-									<div class="elementor-widget-container">
-										<h3 class="elementor-heading-title elementor-size-xl">' . $catalogo['post_title'] . '</h3>
-									</div>
-									<!-- ./elementor-widget-container -->
-
-								</div>
-								<!-- ./elementor-element -->
-
-								<div class="elementor-element elementor-element-5ff20dcb elementor-align-center elementor-widget elementor-widget-button" data-id="5ff20dcb" data-element_type="widget" data-widget_type="button.default">
-									
-									<div class="elementor-widget-container">
-										
-										<div class="elementor-button-wrapper">';
-
-                    if ($catalogo['download']['url']) :
-
-                        echo '
-											
-											<a href="' . $catalogo['download']['url'] . '" target="_blank" class="elementor-button-link elementor-button elementor-size-xs elementor-animation-grow" role="button">
-												
-												<span class="elementor-button-content-wrapper">
-
-													<span class="elementor-button-icon elementor-align-icon-left">
-														<i aria-hidden="true" class="fas fa-angle-right"></i>
-													</span>
-													<!-- ./elementor-button-icon -->
-
-													<span class="elementor-button-text">download</span>
-
-												</span>
-												<!-- ./elementor-button-content-wrapper -->
-
-											</a>
-											<!-- ./elementor-button-link -->';
-
-                    endif;
-
-                    echo '
-
-										</div>
-										<!-- ./elementor-button-wrapper -->
-
-									</div>
-									<!-- ./elementor-widget-container -->
-
-								</div>
-								<!-- ./elementor-element -->
-
-							</div>
-							<!-- ./elementor-widget-wrap -->
-
-						</div>
-						<!-- ./elementor-column-wrap -->
-
-					</div>
-					<!-- ./elementor-element -->';
-
-                    if ($count_catalogo % 4 == 3 || ($count_catalogo + 1) == $total_cat) :
-
-                        echo '
-								</div>
-								<!-- ./elementor-row -->';
-
-                        echo '
-							</div>
-							<!-- .elementor-container -->
-
-						</section>';
-
-                    endif;
-
-                    $count_catalogo++;
-
-                endif;
-
-            endforeach;
-
-        endforeach;
-
-    endforeach;
-
-    echo '
+    $output .= '
 		</div>
 		<!-- ./tks-catalogos -->';
+
+    return $output;
 }
