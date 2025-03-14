@@ -142,7 +142,7 @@ if( function_exists( 'acf_add_local_field_group') ):
 				'return_format' => 'array',
 				'library' => 'all',
 				'min_size' => '',
-				'max_size' => 50,
+				'max_size' => 100,
 				'mime_types' => '',
 			),
 		),

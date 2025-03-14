@@ -4,7 +4,7 @@
  * Plugin Name: Tunkers
  * Plugin URI: https://agencialaf.com
  * Description: Este plugin é parte do ConverteFácil.
- * Version: 2.2.3
+ * Version: 2.2.4
  * Author: Ingo Stramm
  * Text Domain: tks
  * License: GPLv2
