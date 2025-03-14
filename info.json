@@ -1,6 +1,6 @@
 {
     "name": "Template Plugin",
-    "version": "2.2.4",
+    "version": "2.2.5",
     "download_url": "https://raw.githubusercontent.com/IngoStramm/tunkers/refs/heads/main/dist/tunkers.zip",
     "homepage": "https://agencialaf.com",
     "requires": "4.7",
